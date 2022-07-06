@@ -53,6 +53,7 @@ class ImageData:
 
 class TweetData:
     loader = Instaloader()
+    loader.login(INSTA_LOGIN, INSTA_PASSWORD)
 
     def __init__(self, tweet, db_directory):
         self.tweet = tweet
