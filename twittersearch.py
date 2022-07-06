@@ -24,10 +24,9 @@ def read_token_file(filename):
 
 class TwitterSearch:
     def __init__(self, db_directory):
-        logger.info("searcher using %s" % TWITTER_CREDS)
-        (self.oauth_token, self.oauth_secret) = read_token_file(TWITTER_CREDS)
+        logger.info("searcher using %s" % TWITTER_TOKEN)
         self.auth = OAuthHandler(APP_KEY, APP_SECRET)
-        self.auth.set_access_token(self.oauth_token, self.oauth_secret)
+        self.auth.set_access_token(TWITTER_TOKEN, TWITTER_SECRET)
         self.api = API(self.auth)
         self.db = db_directory
         return
@@ -176,7 +175,7 @@ def twitter_main(argv):
     return
 
 def main(argv):
-    twitter = TwitterSearch(INSTA_DB)
+    twitter = TwitterSearch(TWITTER_DB)
     ts = twitter.fetch_timeline()
     for t in ts:
         print(t.full_text)
